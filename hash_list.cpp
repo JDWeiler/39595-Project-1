@@ -22,7 +22,7 @@ void hash_list::insert(int key, float value)
 
         node* nHead = new node{key, value, head};
         head = nHead;
-        size++:
+        size++;
 }
 
 std::optional<float> hash_list::get_value(int key) const
