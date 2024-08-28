@@ -25,7 +25,19 @@ void hash_list::insert(int key, float value)
         size++:
 }
 
-std::optional<float> hash_list::get_value(int key) const { return std::nullopt; }
+std::optional<float> hash_list::get_value(int key) const
+{ 
+	node * current = head;
+        while(current)
+        {
+            if (current -> key == key)
+            {
+                return current -> value;
+            }
+            current = current -> next;
+        }
+	return std::nullopt;
+}
 
 bool hash_list::remove(int key) { return false; }
 
