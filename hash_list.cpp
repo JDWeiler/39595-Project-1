@@ -70,7 +70,16 @@ bool hash_list::remove(int key) {
 
 size_t hash_list::get_size() const { return 0; }
 
-hash_list::~hash_list() {}
+hash_list::~hash_list() 
+{
+	node * curr = head;
+        while (curr)
+        {
+            node * temp = curr;
+            curr = curr -> next;
+            delete temp;
+        }
+}
 
 /**-----------------------------------------------------------------------------------
  * END Part 1
