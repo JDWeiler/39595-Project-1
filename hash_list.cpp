@@ -6,7 +6,24 @@ hash_list::hash_list() {}
  * START Part 1
  *------------------------------------------------------------------------------------*/
 
-void hash_list::insert(int key, float value) {}
+void hash_list::insert(int key, float value) 
+{
+	node * curr = head;
+
+        while (curr)
+        {
+            if(curr -> key == key)
+            {
+                curr -> value = value;
+                return;
+            }
+            curr = curr -> next;
+        }
+
+        node* nHead = new node{key, value, head};
+        head = nHead;
+        size++:
+}
 
 std::optional<float> hash_list::get_value(int key) const { return std::nullopt; }
 
