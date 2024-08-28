@@ -39,7 +39,34 @@ std::optional<float> hash_list::get_value(int key) const
 	return std::nullopt;
 }
 
-bool hash_list::remove(int key) { return false; }
+bool hash_list::remove(int key) { 
+	bool remove(int key){
+        if(!head)
+        {
+            return nullptr;
+        }
+        
+        node * curr = head;
+        node * prev = nullptr;
+
+        while (curr) {
+            if(curr -> key == key) {
+                if (prev){
+                    prev -> next = curr -> next;
+                }
+                else {
+                    head = curr -> next;
+                }
+                delete curr;
+                size--;
+                return true;
+            }
+            prev = curr;
+            curr = curr -> next;
+        }
+        return false;
+    }
+}
 
 size_t hash_list::get_size() const { return 0; }
 
