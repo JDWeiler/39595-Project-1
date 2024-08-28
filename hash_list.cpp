@@ -68,7 +68,7 @@ bool hash_list::remove(int key) {
     }
 }
 
-size_t hash_list::get_size() const { return 0; }
+size_t hash_list::get_size() const { return size; }
 
 hash_list::~hash_list() 
 {
