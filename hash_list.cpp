@@ -1,28 +1,43 @@
 #include "hash_list.h"
 
-hash_list::hash_list() {}
+hash_list::hash_list() {
+    size = 0;
+    head = nullptr;
+}
 
 /**-----------------------------------------------------------------------------------
  * START Part 1
  *------------------------------------------------------------------------------------*/
 
-void hash_list::insert(int key, float value) 
-{
-	node * curr = head;
-
-        while (curr)
-        {
-            if(curr -> key == key)
-            {
-                curr -> value = value;
-                return;
-            }
-            curr = curr -> next;
-        }
-
-        node* nHead = new node{key, value, head};
-        head = nHead;
+void hash_list::insert(int key, float value) {
+    if(!head) { //if linked list doesnt exist yet
+        node * new_node = new node;
+        new_node -> key = key;
+        new_node -> value = value;
+        new_node -> next = nullptr;
+        head = new_node;
         size++;
+        return;
+    }
+
+    node * curr = head;
+    node * prev = nullptr;
+
+    while(curr) { //iterate through list and check if key already exists
+        if(curr -> key == key) {
+            curr -> value = value;
+            return;
+        }
+        prev = curr;
+        curr = curr -> next;
+    }
+
+    node * new_node = new node;
+    new_node -> key = key;
+    new_node -> value = value;
+    new_node -> next = nullptr;
+    prev -> next = new_node;
+    size++;
 }
 
 std::optional<float> hash_list::get_value(int key) const
