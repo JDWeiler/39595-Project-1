@@ -34,7 +34,20 @@ void iterator_example(hash_list &list)
 
 int main(int argc, char *argv[])
 {
+#ifdef TRACES
+    hash_list list;
 
+    trace_1();
+    printf("\n\n");
+    trace_2();
+    printf("\n\n");
+    trace_3();
+    printf("\n\n");
+    trace_4();
+    printf("\n\n");
+    trace_5();
+
+#endif
 #ifdef PART1
     hash_list list;
 

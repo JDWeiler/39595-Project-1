@@ -35,6 +35,9 @@ trace_%.cpp : trace_%.txt
 part1: $(ALL_SRC)
 	$(CC) $(CFLAGS) $^ -DPART1 -o $(APP)	
 
+traces: $(ALL_SRC)
+	$(CC) $(CFLAGS) $^ -DTRACES -o $(APP)
+
 part2: $(ALL_SRC)
 	$(CC) $(CFLAGS) $^ -DPART1 -DPART2 -o $(APP)
 
