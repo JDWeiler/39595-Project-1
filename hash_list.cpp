@@ -144,7 +144,7 @@ hash_list &hash_list::operator=(const hash_list &other) {
         curr = curr -> next;
         delete temp;
     }
-    
+
     delete iter_ptr;
 
     size = other.size;
@@ -178,16 +178,29 @@ hash_list &hash_list::operator=(const hash_list &other) {
     return *this;
 }
 
-void hash_list::reset_iter() {}
+void hash_list::reset_iter() {
+    if(!head) {
+        iter_ptr = nullptr;
+        return;
+    }
+
+    iter_ptr = head;
+}
 
 
-void hash_list::increment_iter() {}
+void hash_list::increment_iter() {
+    if(!(iter_ptr -> next)) {
+        iter_ptr = nullptr;
+    }
+
+    iter_ptr = iter_ptr -> next;
+}
 
 
 std::optional<std::pair<const int *, float *>> hash_list::get_iter_value() { return std::nullopt; }
 
 
-bool hash_list::iter_at_end() { return false; }
+bool hash_list::iter_at_end() {return(!iter_ptr);}
 /**-----------------------------------------------------------------------------------
  * END Part 2
  *------------------------------------------------------------------------------------*/
