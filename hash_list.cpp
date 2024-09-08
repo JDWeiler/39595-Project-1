@@ -103,9 +103,80 @@ hash_list::~hash_list()
  * START Part 2
  *------------------------------------------------------------------------------------*/
 
-hash_list::hash_list(const hash_list &other) {}
+hash_list::hash_list(const hash_list &other) {
+    size = other.size;
+    iter_ptr = other.iter_ptr;
 
-hash_list &hash_list::operator=(const hash_list &other) { return *this; }
+    //create new head node
+    head = new node;
+    head->key = other.head-> key;
+    head->value = other.head-> value;
+    head->next = nullptr;
+
+    //pointers to follow new and original linked list
+    node * currentCopy = head; //follows list being CREATED
+    node * currentOriginal = other.head-> next; //follows list being COPIED
+
+    while(currentOriginal) {
+        //create the new node
+        node * newNode = new node;
+        newNode -> key = currentOriginal -> key;
+        newNode -> value = currentOriginal -> value;
+        newNode -> next = nullptr;
+
+        //attach new node to new list
+        currentCopy -> next = newNode;
+
+        //increment both currents
+        currentOriginal = currentOriginal -> next;
+        currentCopy = currentCopy -> next;
+    }
+}
+
+hash_list &hash_list::operator=(const hash_list &other) { 
+    if(this == &other) return *this;
+
+    //deallocate the linked list
+    node * curr = head;
+    while (curr)
+    {
+        node * temp = curr;
+        curr = curr -> next;
+        delete temp;
+    }
+    
+    delete iter_ptr;
+
+    size = other.size;
+    iter_ptr = other.iter_ptr;
+
+    //create new head node
+    head = new node;
+    head->key = other.head-> key;
+    head->value = other.head-> value;
+    head->next = nullptr;
+
+    //pointers to follow new and original linked list
+    node * currentCopy = head; //follows list being CREATED
+    node * currentOriginal = other.head-> next; //follows list being COPIED
+
+    while(currentOriginal) {
+        //create the new node
+        node * newNode = new node;
+        newNode -> key = currentOriginal -> key;
+        newNode -> value = currentOriginal -> value;
+        newNode -> next = nullptr;
+
+        //attach new node to new list
+        currentCopy -> next = newNode;
+
+        //increment both currents
+        currentOriginal = currentOriginal -> next;
+        currentCopy = currentCopy -> next;
+    }
+
+    return *this;
+}
 
 void hash_list::reset_iter() {}
 
