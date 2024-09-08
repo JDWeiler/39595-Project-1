@@ -105,8 +105,12 @@ hash_list::~hash_list()
 
 hash_list::hash_list(const hash_list &other) {
     size = other.size;
-    iter_ptr = other.iter_ptr;
-
+    // if(!other.head) { //is this necessary? idk if other's linked list is allowed to be null
+    //     head = nullptr;
+    //     iter_ptr = nullptr;
+    //     return;
+    // }
+    
     //create new head node
     head = new node;
     head->key = other.head-> key;
@@ -131,10 +135,32 @@ hash_list::hash_list(const hash_list &other) {
         currentOriginal = currentOriginal -> next;
         currentCopy = currentCopy -> next;
     }
+
+    //check if other's iter_ptr is null and set new iter_ptr null if it is
+    //set iter_ptr = head and keep going next until it equals other's iter_ptr then stop
+    if(!(other.iter_ptr)) {
+        iter_ptr = nullptr;
+        return;
+    }
+
+    iter_ptr = head;
+    node * current = other.head;
+
+    while(current != other.iter_ptr) {
+        current = current -> next;
+        iter_ptr = iter_ptr -> next;
+    }
+
 }
 
 hash_list &hash_list::operator=(const hash_list &other) { 
     if(this == &other) return *this;
+
+    // if(!other.head) { //is this necessary? idk if other's linked list is allowed to be null
+    //     head = nullptr;
+    //     iter_ptr = nullptr;
+    //     return;
+    // }
 
     //deallocate the linked list
     node * curr = head;
@@ -173,6 +199,21 @@ hash_list &hash_list::operator=(const hash_list &other) {
         //increment both currents
         currentOriginal = currentOriginal -> next;
         currentCopy = currentCopy -> next;
+    }
+
+    //check if other's iter_ptr is null and set new iter_ptr null if it is
+    //set iter_ptr = head and keep going next until it equals other's iter_ptr then stop
+    if(!(other.iter_ptr)) {
+        iter_ptr = nullptr;
+        return *this;
+    }
+
+    iter_ptr = head;
+    node * current = other.head;
+    
+    while(current != other.iter_ptr) {
+        current = current -> next;
+        iter_ptr = iter_ptr -> next;
     }
 
     return *this;
