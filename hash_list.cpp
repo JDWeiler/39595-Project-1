@@ -229,10 +229,10 @@ hash_list &hash_list::operator=(const hash_list &other) {
 
 void hash_list::reset_iter() {
     //if(!iter_ptr) return;	
-    if(!head) {
-        iter_ptr = nullptr;
-        return;
-    }
+   // if(!head) {
+     //   iter_ptr = nullptr;
+       // return;
+    //}
 
     iter_ptr = head;
 }
