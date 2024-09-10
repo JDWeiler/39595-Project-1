@@ -7,6 +7,7 @@ int trace_2();
 int trace_3();
 int trace_4();
 int trace_5();
+int trace_6();
 
 #ifdef PART2 // Only test iterators in part 2
 void iterator_example(hash_list &list)
@@ -88,6 +89,9 @@ int main(int argc, char *argv[])
 #endif
 
 #ifdef PART2
+    hash_list list;
+    
+    trace_6();
     iterator_example(list);
 #endif
 

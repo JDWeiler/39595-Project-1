@@ -39,7 +39,7 @@ traces: $(ALL_SRC)
 	$(CC) $(CFLAGS) $^ -DTRACES -o $(APP)
 
 part2: $(ALL_SRC)
-	$(CC) $(CFLAGS) $^ -DPART1 -DPART2 -o $(APP)
+	$(CC) $(CFLAGS) $^ -DPART2 -o $(APP)
 
 custom_tests: $(ALL_SRC)
 	$(CC) $(CFLAGS) $^ $(DFLAGS) -o $(APP)

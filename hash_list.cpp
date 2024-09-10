@@ -3,6 +3,7 @@
 hash_list::hash_list() {
     size = 0;
     head = nullptr;
+    iter_ptr = head;
 }
 
 /**-----------------------------------------------------------------------------------
@@ -146,7 +147,7 @@ hash_list::hash_list(const hash_list &other) {
     iter_ptr = head;
     node * current = other.head;
 
-    while(current != other.iter_ptr) {
+    while((current != other.iter_ptr)) {
         current = current -> next;
         iter_ptr = iter_ptr -> next;
     }
@@ -228,11 +229,11 @@ hash_list &hash_list::operator=(const hash_list &other) {
 
 
 void hash_list::reset_iter() {
-    //if(!iter_ptr) return;	
-   // if(!head) {
-     //   iter_ptr = nullptr;
-       // return;
-    //}
+//    if(!iter_ptr) return;	
+//    if(!head) {
+//        iter_ptr = nullptr;
+//        return;
+//     }
 
     iter_ptr = head;
 }
