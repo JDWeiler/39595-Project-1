@@ -227,6 +227,7 @@ hash_list &hash_list::operator=(const hash_list &other) {
 }
 
 void hash_list::reset_iter() {
+    //if(!iter_ptr) return;	
     if(!head) {
         iter_ptr = nullptr;
         return;
@@ -237,9 +238,7 @@ void hash_list::reset_iter() {
 
 
 void hash_list::increment_iter() {
-    if(!(iter_ptr -> next)) {
-        iter_ptr = nullptr;
-    }
+    if(!iter_ptr) return;
 
     if(!(iter_ptr -> next)){
 	iter_ptr = nullptr;
