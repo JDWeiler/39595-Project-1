@@ -105,11 +105,11 @@ hash_list::~hash_list()
 
 hash_list::hash_list(const hash_list &other) {
     size = other.size;
-    // if(!other.head) { //is this necessary? idk if other's linked list is allowed to be null
-    //     head = nullptr;
-    //     iter_ptr = nullptr;
-    //     return;
-    // }
+     if(!other.head) { //is this necessary? idk if other's linked list is allowed to be null
+         head = nullptr;
+         iter_ptr = nullptr;
+         return;
+     }
     
     //create new head node
     head = new node;
@@ -171,10 +171,17 @@ hash_list &hash_list::operator=(const hash_list &other) {
         delete temp;
     }
 
-    delete iter_ptr;
+    //delete iter_ptr;
+    head = nullptr;
+    iter_ptr = nullptr;
 
+    if (!other.head) {
+        size = 0;
+        return *this;
+    }
+    
     size = other.size;
-    iter_ptr = other.iter_ptr;
+    //iter_ptr = other.iter_ptr;
 
     //create new head node
     head = new node;
@@ -234,6 +241,11 @@ void hash_list::increment_iter() {
         iter_ptr = nullptr;
     }
 
+    if(!(iter_ptr -> next)){
+	iter_ptr = nullptr;
+	return;
+    }
+
     iter_ptr = iter_ptr -> next;
 }
 
@@ -241,10 +253,9 @@ void hash_list::increment_iter() {
 std::optional<std::pair<const int *, float *>> hash_list::get_iter_value() { 
     if(!iter_ptr) return std::nullopt;
 
-    int * key_ptr = &(iter_ptr -> key);
-    float * value_ptr = &(iter_ptr -> value);
-
-    return std::make_pair(key_ptr, value_ptr);
+    //int * key_ptr = &(iter_ptr -> key);
+    //float * value_ptr = &(iter_ptr -> value);
+    return std::make_pair(&(iter_ptr->key), &(iter_ptr ->value));
 }
 
 
