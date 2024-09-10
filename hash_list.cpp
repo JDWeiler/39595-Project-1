@@ -153,7 +153,7 @@ hash_list::hash_list(const hash_list &other) {
 
 }
 
-hash_list &hash_list::operator=(const hash_list &other) { 
+hash_list &hash_list::operator=(const hash_list &other) {
     if(this == &other) return *this;
 
     // if(!other.head) { //is this necessary? idk if other's linked list is allowed to be null
@@ -179,7 +179,7 @@ hash_list &hash_list::operator=(const hash_list &other) {
         size = 0;
         return *this;
     }
-    
+
     size = other.size;
     //iter_ptr = other.iter_ptr;
 
@@ -214,17 +214,18 @@ hash_list &hash_list::operator=(const hash_list &other) {
         iter_ptr = nullptr;
         return *this;
     }
+    else{
+        iter_ptr = head;
+        node * current = other.head;
 
-    iter_ptr = head;
-    node * current = other.head;
-    
-    while(current != other.iter_ptr) {
-        current = current -> next;
-        iter_ptr = iter_ptr -> next;
+        while(current != other.iter_ptr) {
+             current = current -> next;
+             iter_ptr = iter_ptr -> next;
+        }
     }
-
     return *this;
 }
+
 
 void hash_list::reset_iter() {
     //if(!iter_ptr) return;	
